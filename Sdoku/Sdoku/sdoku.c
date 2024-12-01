@@ -117,6 +117,14 @@ int main() {
             else if (key == 13) { // Enter 키
                 modifyBoard();
             }
+            else if (key == 's' || key == 'S') { // 's' 키
+                memcpy(solvedBoard, board, sizeof(board)); // solvedBoard에 board 복사
+                if (solveSudoku()) {
+                    showSolution = 1;
+                    printBoard();
+                    printf("\n*스도쿠 해결 완료*\n");
+                }
+            }
         }
     }
     return 0;

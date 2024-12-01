@@ -38,6 +38,31 @@ int solveSudoku() {
     return 1;
 }
 
+void printSolution() {
+    printf("\n[정답]\n\n");
+    int boxSize = (int)sqrt(size);
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (solvedBoard[i][j] != 0) {
+                printf("\033[33m%2d \033[0m", solvedBoard[i][j]); // 정답은 노란색으로 출력
+            }
+            else {
+                printf("   "); // 비어있는 부분
+            }
+            if ((j + 1) % boxSize == 0 && (j + 1) < size) {
+                printf(BLUE "| ");
+            }
+        }
+        printf("\n");
+        if ((i + 1) % boxSize == 0 && (i + 1) < size) {
+            for (int j = 0; j < size * 3 + (boxSize - 1); j++) {
+                printf(BLUE "-" RESET);
+            }
+            printf("\n");
+        }
+    }
+}
+
 int main() {
     while (1) { // 초기 화면으로 돌아가기 위한 최상위 루프
         printf("해결할 스도쿠 크기를 선택하세요 ~ ! \n[ 1. 4X4 | 2. 9X9 | 3. 16X16 | 4. 종료 ] : ");

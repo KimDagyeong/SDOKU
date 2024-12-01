@@ -125,6 +125,10 @@ int main() {
                     printf("\n*스도쿠 해결 완료*\n");
                 }
             }
+            else if (key == 'c' || key == 'C') { // 'c' 키
+                showSolution = 0;
+                printBoard();
+            }
         }
     }
     return 0;

@@ -107,6 +107,26 @@ void printBoard() {
     }
 }
 
+// 안전한 위치 확인 함수
+int isSafe(int row, int col, int num) {
+    for (int x = 0; x < size; x++) {
+        if (solvedBoard[row][x] == num || solvedBoard[x][col] == num) {
+            return 0;
+        }
+    }
+    int boxSize = (int)sqrt(size);
+    int boxRowStart = row - row % boxSize;
+    int boxColStart = col - col % boxSize;
+    for (int i = 0; i < boxSize; i++) {
+        for (int j = 0; j < boxSize; j++) {
+            if (solvedBoard[i + boxRowStart][j + boxColStart] == num) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 int main() {
     while (1) { // 초기 화면으로 돌아가기 위한 최상위 루프
         printf("해결할 스도쿠 크기를 선택하세요 ~ ! \n[ 1. 4X4 | 2. 9X9 | 3. 16X16 | 4. 종료 ] : ");

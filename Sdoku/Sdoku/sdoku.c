@@ -127,6 +127,21 @@ int isSafe(int row, int col, int num) {
     return 1;
 }
 
+// 사용자 입력으로 보드 수정
+void modifyBoard() {
+    int value;
+    printf("\n수정할 값을 입력하세요 (0은 삭제): ");
+    scanf("%d", &value);
+
+    if (value >= 0 && value <= size) {
+        board[cursorRow][cursorCol] = value;
+        isModified[cursorRow][cursorCol] = (value != 0); // 수정한 경우 1로 설정
+    }
+    else {
+        printf("잘못된 입력입니다. 다시 시도하세요.\n");
+    }
+}
+
 int main() {
     while (1) { // 초기 화면으로 돌아가기 위한 최상위 루프
         printf("해결할 스도쿠 크기를 선택하세요 ~ ! \n[ 1. 4X4 | 2. 9X9 | 3. 16X16 | 4. 종료 ] : ");

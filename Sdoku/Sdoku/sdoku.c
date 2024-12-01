@@ -63,6 +63,50 @@ void printSolution() {
     }
 }
 
+void printBoard() {
+    int boxSize = (int)sqrt(size);
+    system("cls");
+    int padding = (80 - (size * 3 + (boxSize - 1))) / 2;
+    int topMargin = 3;
+
+    for (int i = 0; i < topMargin; i++) printf("\n");
+
+    for (int i = 0; i < size; i++) {
+        printf("%*s", padding, "");
+        for (int j = 0; j < size; j++) {
+            if (i == cursorRow && j == cursorCol) {
+                printf(RED "%2d " RESET, board[i][j] ? board[i][j] : 0);
+            }
+            else if (isModified[i][j]) {
+                printf("\033[32m%2d \033[0m", board[i][j]); // 초록색으로 출력
+            }
+            else if (board[i][j] != 0) {
+                printf("\033[33m%2d \033[0m", board[i][j]); // 노란색
+            }
+            else {
+                printf("%2d ", board[i][j]);
+            }
+
+            if ((j + 1) % boxSize == 0 && j + 1 < size) {
+                printf(BLUE "| " RESET);
+            }
+        }
+        printf("\n");
+
+        if ((i + 1) % boxSize == 0 && i + 1 < size) {
+            printf("%*s", padding, "");
+            for (int k = 0; k < size * 3 + (boxSize - 1); k++) {
+                printf(BLUE "-" RESET);
+            }
+            printf("\n");
+        }
+    }
+
+    if (showSolution) {
+        printSolution();
+    }
+}
+
 int main() {
     while (1) { // 초기 화면으로 돌아가기 위한 최상위 루프
         printf("해결할 스도쿠 크기를 선택하세요 ~ ! \n[ 1. 4X4 | 2. 9X9 | 3. 16X16 | 4. 종료 ] : ");

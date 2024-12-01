@@ -89,6 +89,15 @@ int main() {
             printf("잘못된 선택입니다. 다시 시도하세요.\n");
             continue; // 잘못된 입력일 경우 다시 초기 화면 출력
         }
+
+        while (1) { // 보드 조작을 위한 내부 루프
+            printBoard();
+            printf("\n\n[ 화살표 키로 이동하고 수정하려면 Enter를 누르세요. ]\n");
+            printf("[ s : 정답 보기, c : 정답 가리기, ESC : 초기 화면으로 돌아가기 ]\n");
+
+            int key = _getch();
+
+        }
     }
     return 0;
 }

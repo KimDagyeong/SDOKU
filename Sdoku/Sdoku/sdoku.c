@@ -129,6 +129,19 @@ int main() {
                 showSolution = 0;
                 printBoard();
             }
+            else if (key == 27) { // ESC 키
+                system("cls");
+                // 보드를 초기 상태로 재설정
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        board[i][j] = 0; // 보드를 초기화
+                        isModified[i][j] = 0; // 수정 여부도 초기화
+                    }
+                }
+                showSolution = 0; // 정답 표시 상태 초기화
+                break; // 내부 루프를 탈출하여 초기 화면으로 돌아감
+            }
+
         }
     }
     return 0;

@@ -17,6 +17,27 @@ int isModified[MAX_SIZE][MAX_SIZE] = { 0 }; // 0으로 초기화
 #define RED "\033[31m"
 #define RESET "\033[0m"
 
+// 스도쿠 해결 함수
+int solveSudoku() {
+    for (int row = 0; row < size; row++) {
+        for (int col = 0; col < size; col++) {
+            if (solvedBoard[row][col] == 0) { // 정답 보드에서 빈 칸 찾기
+                for (int num = 1; num <= size; num++) {
+                    if (isSafe(row, col, num)) {
+                        solvedBoard[row][col] = num; // 정답 보드에 숫자 채우기
+                        if (solveSudoku()) { // 재귀 호출
+                            return 1;
+                        }
+                        solvedBoard[row][col] = 0; // 백트래킹
+                    }
+                }
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 int main() {
     while (1) { // 초기 화면으로 돌아가기 위한 최상위 루프
         printf("해결할 스도쿠 크기를 선택하세요 ~ ! \n[ 1. 4X4 | 2. 9X9 | 3. 16X16 | 4. 종료 ] : ");

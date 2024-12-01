@@ -11,3 +11,8 @@ int size;
 int cursorRow = 0, cursorCol = 0; // 커서 위치
 int showSolution = 0;  // 정답 보기 상태를 나타내는 전역 변수, 초기값은 0
 int isModified[MAX_SIZE][MAX_SIZE] = { 0 }; // 0으로 초기화
+
+// ANSI 이스케이프 코드 정의
+#define BLUE "\033[34m"
+#define RED "\033[31m"
+#define RESET "\033[0m"
